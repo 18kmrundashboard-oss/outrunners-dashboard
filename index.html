@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Outrunners Community UK</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-gpx/2.1.2/gpx.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="outrunners.css">
+</head>
+<body>
+    <div id="liveIndicator" style="display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #39FF14; color: #000; padding: 8px 20px; border-radius: 50px; font-weight: 800; z-index: 9999;">● LIVE RUN IN PROGRESS</div>
+    <div class="dashboard-container">
+        <header>
+            <div class="logo">OUTRUNNERS <span>⚡</span> CLUB</div>
+            <div class="header-info"><p class="neon-text">LIVE DASHBOARD V1.0</p></div>
+        </header>
+
+        <div class="section-grid">
+            <div class="col-12 glass-card">
+                <h2>📍 Route Visualizer</h2>
+                <div id="map" style="height: 450px; border-radius: 16px; margin-top: 1rem;"></div>
+                <div class="map-controls">
+                    <input type="file" id="gpxUpload" accept=".gpx" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('gpxUpload').click()">Upload GPX</button>
+                    <p id="fileName"></p>
+                </div>
+            </div>
+            <div class="col-8 glass-card" id="paceCard">
+                <h2>⏱ Pace & Splits</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                    <div><label>Target 18K Time</label><input type="text" id="targetTime" value="01:20:00"></div>
+                    <div><label>Required Pace/KM</label><div id="requiredPace" class="neon-text" style="font-size: 1.8rem;">--:--</div></div>
+                </div>
+            </div>
+            <div class="col-4 glass-card">
+                <h2>🏆 Top Runners</h2>
+                <ul class="leaderboard-list">
+                    <li class="leaderboard-item"><span>Alex M.</span><span class="runner-stat">1:08:45</span></li>
+                    <li class="leaderboard-item"><span>Sarah K.</span><span class="runner-stat">1:12:30</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="outrunners.js"></script>
+</body>
+</html>
